@@ -1,0 +1,69 @@
+<div class="record">
+  <div class="record-choosen" *ngIf="selectedCategory">
+    <img class="record-choosen__img" src="{{selectedCategory.img}}" [ngClass]="{saveClickedAnim: saveClicked}">
+    <div class="record-choosen__text">{{selectedCategory.name}}</div>
+  </div>
+  <div class="record-form">
+    <input type="text" class='record-form__input' id='price' [(ngModel)]="result" [ngClass]="{alarm: negativeNumber}">
+    <input type="text" placeholder='Details...' id='details' class='record-form__input__label' #details>
+    <label for="details" class='record-form__label'>Details...</label>
+  </div>
+  <div class="record-calculator">
+    <div class="record-calculator__button" (click)="clicked('7')">7</div>
+    <div class="record-calculator__button" (click)="clicked('8')">8</div>
+    <div class="record-calculator__button" (click)="clicked('9')">9</div>
+    <div class="record-calculator__button" (click)="delete()">
+      <i class="material-icons">keyboard_arrow_left</i>
+    </div>
+
+    <div class="record-calculator__button" (click)="clicked('6')">6</div>
+    <div class="record-calculator__button" (click)="clicked('5')">5</div>
+    <div class="record-calculator__button" (click)="clicked('4')">4</div>
+    <a (click)="saveWrapperLinkClicked()">
+      <div class="record-calculator__button" [ngClass]="{disabled: ignoreDoubleClick}" (click)="add()">+</div>
+    </a>
+
+    <div class="record-calculator__button" (click)="clicked('1')">1</div>
+    <div class="record-calculator__button" (click)="clicked('2')">2</div>
+    <div class="record-calculator__button" (click)="clicked('3')">3</div>
+    <a (click)="saveWrapperLinkClicked()">
+      <div class="record-calculator__button" (click)="minus()">-</div>
+    </a>
+
+
+    <div class="record-calculator__button" (click)="clicked('0')">0</div>
+    <div class="record-calculator__button" (click)="openModal('modalExpenses')">
+      <i class="material-icons">search</i>
+    </div>
+    <a (click)="saveWrapperLinkClicked()">
+      <button type="button" class="record-calculator__button save" (click)="save(details.value)">
+        <i class="material-icons">file_download</i>
+      </button>
+    </a>
+    <div class="record-calculator__button" (click)="equal()">=</div>
+
+  </div>
+
+  <pk-modal id="modalExpenses">
+    <div class="modal">
+      <div class="modal-body">
+        <!-- <div class="modal-list-items1">
+            <div class="modal-list-items1-incomes" *ngFor = 'let inc of incomes'>
+                <img class='modal-list-items1-incomes__image'
+                     src="{{inc.img}}" alt="" (click)="choosedCategory(inc)">
+                <div class="modal-list-items1-incomes__text">{{inc.name}}</div>
+            </div>
+          </div> -->
+
+        <div class="modal-list-items2">
+          <div class="modal-list-items2-record" *ngFor='let cat of categories'>
+            <img class='modal-list-items2-expenses__image' src="{{cat.img}}" alt="" (click)="choosedCategory(cat)">
+            <div class="modal-list-items2-expenses__text">{{cat.name}}</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </pk-modal>
+
+</div>

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="image">
+    <img src="../../assets/icons/mstile-70x70.png" class="image__budgetify" />
+  </div>
+  <div>
+    <form class="login-form" [formGroup]='loginForm' (ngSubmit)="loginWithUsernameAndPassword()" novalidate>
+      <div class="login-form__title">
+        <strong>Login</strong>
+      </div>
+      <div class="input-wrapper">
+        <input type="text" formControlName="email" id="email" class="input__input" placeholder="Type your email" (focus)="clearErrors()">
+        <span class="input-icon" data-icon="&#xE0BE;"></span>
+      </div>
+      <div class='error'>
+        <app-control-message [control]="loginForm.controls['email']"></app-control-message>
+        <p *ngIf="wrongEmail">Email is wrong!</p>
+      </div>
+      <br>
+      <br>
+      <div class="input-wrapper">
+        <input formControlName="password" class="input__input" type="password" id="password" placeholder="Type your password" (focus)="clearErrors()">
+        <span class="input-icon" data-icon="&#xE897;"></span>
+      </div>
+      <div class="error">
+        <app-control-message [control]="loginForm.controls['password']"></app-control-message>
+        <p *ngIf="wrongPassword">Password is wrong!</p>
+      </div>
+      <br>
+      <br>
+      <button type="submit" class="login-form__button" [disabled]="!loginForm.valid">
+        Login
+      </button>
+    </form>
+  </div>
+
+</div>

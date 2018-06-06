@@ -1,0 +1,53 @@
+<div class="container" *ngIf="selectedDate.period !== 'day'; else day">
+
+  <div *ngIf="!noRecords; else empty">
+    <div class="records" *ngFor="let rec of recordsAnim; let i = index" (@flyInOut.done)="doNext()" @flyInOut>
+      <div class="records-item">
+        <img class="records-item__img" src="{{rec?.img}}" alt="" (click)='goToRecords(rec)'>
+        <div class="records-item__name">
+          <h2>{{rec?.name}}</h2>
+        </div>
+        <div class="records-item__value" [ngClass]="{'green':rec?.income, 'red':!rec?.income}">
+          {{rec?.value | currency:'zl':'symbol':'2.0-4'}}
+        </div>
+        <div class="expand-item" (click)='expandItem(i, rec)'>
+          <i class="fa fa-plus-circle" *ngIf="!rec.expanded"></i>
+          <i class="fa fa-minus-circle" *ngIf="rec.expanded"></i>
+        </div>
+      </div>
+      <div *ngIf='rec.expanded'>
+        <ul class="expanded-list" *ngFor="let r of expandedList[i]">
+          <li>{{r?.createdAt}}</li>
+          <li>{{r?.details}}</li>
+          <li>{{r?.value | currency:'zl':'symbol':'2.0-4'}} </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<ng-template #day>
+  <div class="container">
+    <div *ngIf="!noRecords; else empty">
+      <div class="records" *ngFor="let rec of recordsAnim; let i = index" (@flyInOut.done)="doNext()" @flyInOut>
+        <i class="material-icons records-item__delete" (click)='deleteItem(rec?.recordId)'>delete</i>
+        <div class="records-item" [@itemAnimation]="animationState[i]" (swipeleft)="slide('slideLeft', i)" (swiperight)="slide('slideRight', i)">
+          <img class="records-item__img" src="{{rec?.img}}" alt="">
+          <div class="records-item__name">
+            <h2>{{rec?.name}}</h2>
+          </div>
+          <div class="records-item__value" [ngClass]="{'green ':rec?.income, 'red ':!rec?.income}">
+            {{rec?.value | currency:'zl':"symbol":'2.0-4'}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #empty>
+  <h2>No records found!</h2>
+</ng-template>

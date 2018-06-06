@@ -1,0 +1,33 @@
+<nav class='navbar' *ngIf="isAuthorized$|async">
+  <ul class='navbar-list'>
+    <li class='navbar-list__item list'>
+      <a class="navbar-list__link" routerLink="/list" routerLinkActive="active">
+        <i class="material-icons navbar-list__icon">list</i>
+      </a>
+    </li>
+    <li class='navbar-list__item chart'>
+      <a class='navbar-list__link' routerLink="/charts" routerLinkActive="active">
+        <i class="material-icons navbar-list__icon">pie_chart</i>
+      </a>
+    </li>
+    <li class='navbar-list__item add'>
+      <a class='navbar-list__link' routerLink="/records" routerLinkActive="active">
+        <i class="material-icons navbar-list__icon">
+          note_add
+        </i>
+      </a>
+    </li>
+    <li class='navbar-list__item calendar'>
+      <a class='navbar-list__link' routerLink="/calendar" routerLinkActive="active">
+        <i class="material-icons navbar-list__icon" [class.activated]="clicked">event</i>
+      </a>
+    </li>
+    <li class='navbar-list__item img'>
+      <a class='navbar-list__link' routerLinkActive="active" (click)="showMenu()">
+        <img class="navbar-list-sidemenu-img" src="{{(user$|async)?.photoUrl}}">
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<app-sidemenu [@sidemenuSlideAnimation]='menuState' (messageEvent)="receiveMessage($event)"></app-sidemenu>

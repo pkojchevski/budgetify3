@@ -1,0 +1,25 @@
+<div class="sidemenu">
+  <header>
+    <div class="user">
+      <img class="user__img" src="{{(user$|async)?.photoUrl}}">
+      <div class="user__displayName">
+        {{(user$|async)?.displayName}}
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class='backspace' (click)="hideMenu()">
+      <i class="material-icons">keyboard_arrow_right</i>
+    </div>
+    <div class="list">
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="signout" (click)='signOut()'>
+      <i class="material-icons">power_settings_new</i>
+    </div>
+  </footer>
+</div>

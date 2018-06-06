@@ -1,0 +1,3 @@
+<h1 class="selected" [ngClass]="{selectionChange:selectionChanged$|async}" *ngIf="isAuthorized$|async">
+  {{(selectedDate$|async).date}}
+</h1>

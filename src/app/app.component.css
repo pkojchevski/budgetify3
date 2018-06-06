@@ -1,0 +1,18 @@
+bs-navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+
+selected-date {
+  position: fixed;
+  top: 5rem;
+  z-index: 998;
+  width: 100%;
+  background-color: var(--color-quartery);
+}
+
+.container {
+  border: 1px solid red;
+  display: flex;
+}

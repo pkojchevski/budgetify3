@@ -1,0 +1,19 @@
+<div class='piechart' *ngIf="showchart">
+  <nvd3 [options]="options" [data]="data"></nvd3>
+  <div class='balance'>
+    <div class='balance-item'>
+      <img src='../../assets/img/plus.png' class='balance-item__img'>
+      <span class='balance-item__plus'>{{totalIncome | currency:'zl':"symbol":'2.0-4'}}</span>
+    </div>
+    <div class='balance-item'>
+      <img src='../../assets/img/minus.png' class='balance-item__img'>
+      <span class='balance-item__minus'>{{totalExpenses | currency:'zl':"symbol":'2.0-4'}}</span>
+    </div>
+    <div class='balance-item'>
+      <img src='../../assets/img/exclamation.png' class='balance-item__img'>
+      <span class='balance-item__total'>
+        <strong>{{total | currency:'zl':"symbol":'2.0-4'}}</strong>
+      </span>
+    </div>
+  </div>
+</div>
